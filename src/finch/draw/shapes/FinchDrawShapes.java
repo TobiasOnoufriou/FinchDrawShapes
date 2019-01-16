@@ -49,19 +49,99 @@ public class FinchDrawShapes extends LogData {
             pF.tillShapeDrawn(centimeterestoTraveled);
             
             Timer t = new Timer();
+            
             while(drawing){
                 //0.25cm/s with speed of 50 on each wheel.
-                myf.setWheelVelocities(50, 50);
-                //while(time < 0.25 * x){
-                //}
-                //myf.setWheelVelocities(50,0)
-                //
+                
+                
+                
+                /*while(elapsedTimeinSeconds < 0.25 * x){
+                        myf.setWheelVelocities(50, 50);
+                        System.out.println(elapsedTimeinSeconds);
+                        long end  = System.nanoTime();
+                        long elapsedTime = end - start;
+                        elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
+                }
+                myf.stopWheels();
+                elapsedTimeinSeconds = 0;
+                System.out.println(triangleAngles[0]/ 57.23);
+                while(elapsedTimeinSeconds < triangleAngles[0] / 57.23  ){
+                    myf.setWheelVelocities(200,0);  
+                    long end  = System.nanoTime();
+                    long elapsedTime = end - start;
+                    elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
+                }
+                myf.stopWheels();
+                elapsedTimeinSeconds = 0;
+                while(elapsedTimeinSeconds < 0.25 * y){
+                        myf.setWheelVelocities(50, 50);
+                        System.out.println(elapsedTimeinSeconds);
+                        long end  = System.nanoTime();
+                        long elapsedTime = end - start;
+                        elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
+                }
+                myf.stopWheels();
+                double pointAngle = 360 - triangleAngles[1];
+                while(elapsedTimeinSeconds < pointAngle / 57.23  ){
+                    myf.setWheelVelocities(200,0);  
+                    long end  = System.nanoTime();
+                    long elapsedTime = end - start;
+                    elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
+                }
+                myf.stopWheels();
+                elapsedTimeinSeconds = 0;
+                while(elapsedTimeinSeconds < 0.25 * z){
+                       myf.setWheelVelocities(50, 50);
+                       System.out.println(elapsedTimeinSeconds);
+                       long end  = System.nanoTime();
+                       long elapsedTime = end - start;
+                       elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
+                }
+                myf.stopWheels();
+                elapsedTimeinSeconds = 0;
+                while(elapsedTimeinSeconds < triangleAngles[2] / 57.23  ){
+                    myf.setWheelVelocities(200,0);  
+                    long end  = System.nanoTime();
+                    long elapsedTime = end - start;
+                    elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
+                }
+                myf.stopWheels();
+                drawing = false;*/
             }
             pF.setVisible(false);
             new drawShapeWindow().setVisible(true);
         }else{
             System.out.println("Cannot Create Triangle");
             win.setTitle("Cannot Create Triangle");
+        }
+    }
+    public void moveFinch(int x, int y, int z, boolean drawing){
+        double elapsedTimeinSeconds = 0;
+        int[] lengthArray = new int[3];
+        lengthArray[0] = x;
+        lengthArray[1] = y;
+        lengthArray[2] = z;
+        while(drawing){
+            for(int i = 0; i < 3; i++){
+                long start = System.nanoTime();
+                while(elapsedTimeinSeconds < 0.25 * lengthArray[i]){
+                       myf.setWheelVelocities(50, 50);
+                       System.out.println(elapsedTimeinSeconds);
+                       long end  = System.nanoTime();
+                       long elapsedTime = end - start;
+                       elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
+                }
+                myf.stopWheels();
+                elapsedTimeinSeconds = 0;
+                while(elapsedTimeinSeconds < triangleAngles[i] / 57.23  ){
+                    myf.setWheelVelocities(200,0);  
+                    long end  = System.nanoTime();
+                    long elapsedTime = end - start;
+                    elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
+                }
+                myf.stopWheels();
+                drawing = false; 
+            }
         }
     }
     //Function will draw a Rectangle sides between 20cm and 80cm
