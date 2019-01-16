@@ -54,6 +54,7 @@ public class FinchDrawShapes extends LogData {
             win.setTitle("Cannot Create Triangle");
         }
     }
+    
     public void moveFinch(int x, int y, int z, boolean drawing){
         double elapsedTimeinSeconds = 0;
         int[] lengthArray = new int[3];
@@ -85,6 +86,7 @@ public class FinchDrawShapes extends LogData {
             drawing = false;
         }
     }
+    
     public void moveFinch(int x, int y,boolean drawing){
         double elapsedTimeinSeconds = 0;
         int[] lengthArray = new int[2];
@@ -124,6 +126,7 @@ public class FinchDrawShapes extends LogData {
             drawing = false;
         }
     }
+    
     //Function will draw a Rectangle sides between 20cm and 80cm
     public void drawRectangle(int x, int y, RectangleWindow win) throws IOException{
         boolean drawing = true;
@@ -138,6 +141,7 @@ public class FinchDrawShapes extends LogData {
         pF.setVisible(false);
         new drawShapeWindow().setVisible(true);
     }
+    
     public boolean checkTriangle(int x, int y, int z){
         boolean sizesWork = true;
         if(x + y <= z){
@@ -151,6 +155,7 @@ public class FinchDrawShapes extends LogData {
         }
         return sizesWork;
     }
+    
     public void anglesOfTriangle(int x, int y, int z){
         //double[] triangleAngles = new double[3];
         double tempValue;
@@ -182,12 +187,15 @@ public class FinchDrawShapes extends LogData {
     public void programQuit(){
         myf.quit();
     }
+    
     public double[] getTriangleAngles(){
         return this.triangleAngles;
     } 
+    
     public void setSizesWork(boolean newsizesWork){
         this.sizesWork = newsizesWork;
     }
+    
     public boolean getSizesWork(){
         return this.sizesWork;
     }

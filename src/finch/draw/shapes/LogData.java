@@ -27,6 +27,7 @@ public class LogData {
     LogData(){
         
     }
+    
     public void LogData(int x, int y) throws IOException{
         out = new PrintWriter(new BufferedWriter(new FileWriter("\\shapeLog.txt", true)));
         int overallShapeSize = x + y; 
@@ -34,6 +35,7 @@ public class LogData {
         out.flush();
         out.close();
     }
+    
     public void LogData(int x, int y, int z, double[] angles) throws IOException{
         DecimalFormat  df = new DecimalFormat("#.00");
         int overallShapeSize = x + y + z; 
@@ -42,6 +44,7 @@ public class LogData {
         out.flush();
         out.close(); 
     }
+    
     public String getMostDrawnShape() throws IOException{
         String mostCommon;
         
@@ -70,6 +73,7 @@ public class LogData {
         }
         return mostCommon;
     }
+    
     public String getLargestShape() throws IOException{
         int largestShapeSize = 0;
         int getIndex = 0;
@@ -99,6 +103,7 @@ public class LogData {
         
         return largestShape;
     }
+    
     public String getoutputAllDrawnShapes() throws IOException{
         String output = "";
         out = new PrintWriter(new BufferedWriter(new FileWriter("\\shapeLog.txt", true)));
