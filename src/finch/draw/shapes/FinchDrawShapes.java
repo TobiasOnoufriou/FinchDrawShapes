@@ -17,15 +17,11 @@ import java.text.DecimalFormat;
 
 public class FinchDrawShapes extends LogData {
     private static Finch myf = new Finch();
-    
-    private Timer timer = new Timer();
     private processingFrame pF = new processingFrame();
     private boolean sizesWork;
-    private int xTriangle, yTriangle, zTriangle;
     private double[] triangleAngles = new double[3]; 
-    private int xRectangle, yRectangle;
     
-    private int centimeterestoTraveled;
+    private int centimeterestoTravel;
     private int centimeterstTraveled;
     
     Timer time = new Timer();
@@ -46,7 +42,9 @@ public class FinchDrawShapes extends LogData {
             win.setVisible(false);
             pF.setVisible(true);
             drawing = true;
-            pF.tillShapeDrawn(centimeterestoTraveled);
+            centimeterestoTravel = x + y + z;
+            pF.tillShapeDrawn(centimeterestoTravel);
+            
             //0.25cm/s with speed of 50 on each wheel.
             moveFinch(x,y,z, drawing);
             pF.setVisible(false);
@@ -131,8 +129,11 @@ public class FinchDrawShapes extends LogData {
         boolean drawing = true;
         LogData(x,y);
         win.setVisible(false);
+        centimeterestoTravel = x + y;
+        pF.tillShapeDrawn(centimeterestoTravel);
         pF.setVisible(true);
-        pF.tillShapeDrawn(centimeterestoTraveled);
+        
+        
         moveFinch(x,y,drawing);
         pF.setVisible(false);
         new drawShapeWindow().setVisible(true);
@@ -179,7 +180,7 @@ public class FinchDrawShapes extends LogData {
     //For Rectangle
 
     public void programQuit(){
-        
+        myf.quit();
     }
     public double[] getTriangleAngles(){
         return this.triangleAngles;

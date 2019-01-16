@@ -20,6 +20,7 @@ import java.util.Random;
  */
 public class drawShapeWindow extends javax.swing.JFrame {
     private final LogData dat = new LogData();
+    private final FinchDrawShapes shape = new FinchDrawShapes();
     /**
      * Creates new form drawShapeWindow
      */
@@ -98,6 +99,7 @@ public class drawShapeWindow extends javax.swing.JFrame {
         String largestShape = "";
         String mostDrawnShape = "";
         String allShapes = "";
+        shape.programQuit();
         try{
             largestShape += dat.getLargestShape();
             mostDrawnShape += dat.getMostDrawnShape();
