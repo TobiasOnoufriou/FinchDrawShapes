@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package finch.draw.shapes;
-//import edu.cmu.ri.createlab.terk.robot.finch.Finch;
+import edu.cmu.ri.createlab.terk.robot.finch.Finch;
 import java.io.*;
 import java.util.Timer;
 import java.math.*;
@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
 
 
 public class FinchDrawShapes extends LogData {
-    //private static Finch myf = new Finch();
+    private static Finch myf = new Finch();
     
     private Timer timer = new Timer();
     private processingFrame pF = new processingFrame();
@@ -47,9 +47,16 @@ public class FinchDrawShapes extends LogData {
             pF.setVisible(true);
             drawing = true;
             pF.tillShapeDrawn(centimeterestoTraveled);
-            /*while(drawing){
-                
-            }*/
+            
+            Timer t = new Timer();
+            while(drawing){
+                //0.25cm/s with speed of 50 on each wheel.
+                myf.setWheelVelocities(50, 50);
+                //while(time < 0.25 * x){
+                //}
+                //myf.setWheelVelocities(50,0)
+                //
+            }
             pF.setVisible(false);
             new drawShapeWindow().setVisible(true);
         }else{
