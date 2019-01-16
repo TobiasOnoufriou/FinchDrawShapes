@@ -47,67 +47,8 @@ public class FinchDrawShapes extends LogData {
             pF.setVisible(true);
             drawing = true;
             pF.tillShapeDrawn(centimeterestoTraveled);
-            
-            Timer t = new Timer();
-            
-            while(drawing){
-                //0.25cm/s with speed of 50 on each wheel.
-                
-                
-                
-                /*while(elapsedTimeinSeconds < 0.25 * x){
-                        myf.setWheelVelocities(50, 50);
-                        System.out.println(elapsedTimeinSeconds);
-                        long end  = System.nanoTime();
-                        long elapsedTime = end - start;
-                        elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
-                }
-                myf.stopWheels();
-                elapsedTimeinSeconds = 0;
-                System.out.println(triangleAngles[0]/ 57.23);
-                while(elapsedTimeinSeconds < triangleAngles[0] / 57.23  ){
-                    myf.setWheelVelocities(200,0);  
-                    long end  = System.nanoTime();
-                    long elapsedTime = end - start;
-                    elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
-                }
-                myf.stopWheels();
-                elapsedTimeinSeconds = 0;
-                while(elapsedTimeinSeconds < 0.25 * y){
-                        myf.setWheelVelocities(50, 50);
-                        System.out.println(elapsedTimeinSeconds);
-                        long end  = System.nanoTime();
-                        long elapsedTime = end - start;
-                        elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
-                }
-                myf.stopWheels();
-                double pointAngle = 360 - triangleAngles[1];
-                while(elapsedTimeinSeconds < pointAngle / 57.23  ){
-                    myf.setWheelVelocities(200,0);  
-                    long end  = System.nanoTime();
-                    long elapsedTime = end - start;
-                    elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
-                }
-                myf.stopWheels();
-                elapsedTimeinSeconds = 0;
-                while(elapsedTimeinSeconds < 0.25 * z){
-                       myf.setWheelVelocities(50, 50);
-                       System.out.println(elapsedTimeinSeconds);
-                       long end  = System.nanoTime();
-                       long elapsedTime = end - start;
-                       elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
-                }
-                myf.stopWheels();
-                elapsedTimeinSeconds = 0;
-                while(elapsedTimeinSeconds < triangleAngles[2] / 57.23  ){
-                    myf.setWheelVelocities(200,0);  
-                    long end  = System.nanoTime();
-                    long elapsedTime = end - start;
-                    elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
-                }
-                myf.stopWheels();
-                drawing = false;*/
-            }
+            //0.25cm/s with speed of 50 on each wheel.
+            moveFinch(x,y,z, drawing);
             pF.setVisible(false);
             new drawShapeWindow().setVisible(true);
         }else{
@@ -121,11 +62,11 @@ public class FinchDrawShapes extends LogData {
         lengthArray[0] = x;
         lengthArray[1] = y;
         lengthArray[2] = z;
-        while(drawing){
-            for(int i = 0; i < 3; i++){
-                long start = System.nanoTime();
-                while(elapsedTimeinSeconds < 0.25 * lengthArray[i]){
-                       myf.setWheelVelocities(50, 50);
+        while(drawing){  
+        for(int i = 0; i < 3; i++){
+            long start = System.nanoTime();
+            while(elapsedTimeinSeconds < 0.25 * lengthArray[i]){
+                myf.setWheelVelocities(50, 50);
                        System.out.println(elapsedTimeinSeconds);
                        long end  = System.nanoTime();
                        long elapsedTime = end - start;
@@ -133,6 +74,7 @@ public class FinchDrawShapes extends LogData {
                 }
                 myf.stopWheels();
                 elapsedTimeinSeconds = 0;
+                start = System.nanoTime();
                 while(elapsedTimeinSeconds < triangleAngles[i] / 57.23  ){
                     myf.setWheelVelocities(200,0);  
                     long end  = System.nanoTime();
@@ -140,20 +82,58 @@ public class FinchDrawShapes extends LogData {
                     elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
                 }
                 myf.stopWheels();
-                drawing = false; 
+                
             }
+            drawing = false;
+        }
+    }
+    public void moveFinch(int x, int y,boolean drawing){
+        double elapsedTimeinSeconds = 0;
+        int[] lengthArray = new int[2];
+        lengthArray[0] = x;
+        lengthArray[1] = y;
+        while(drawing){
+            
+            for(int z = 0; z < 2; z++){
+                for(int i = 0; i < 2; i++){
+                long start = System.nanoTime();
+            
+                    
+                myf.stopWheels();
+                elapsedTimeinSeconds = 0;
+                    while(elapsedTimeinSeconds < 0.25 * lengthArray[i]){
+                        myf.setWheelVelocities(50, 50);
+                        System.out.println(elapsedTimeinSeconds);
+                        long end = System.nanoTime();
+                        long elapsedTime = end - start;
+                        elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
+                    }
+                    myf.stopWheels();
+                    start = System.nanoTime();
+                    elapsedTimeinSeconds = 0;
+                    
+                    while(elapsedTimeinSeconds < 90 / 57.23  ){
+                        myf.setWheelVelocities(200,0);  
+                        System.out.println(elapsedTimeinSeconds);
+                        long end = System.nanoTime();
+                        long elapsedTime = end - start;
+                        elapsedTimeinSeconds = (double) elapsedTime / 1_000_000_000; 
+                    }
+                    
+                   
+                }
+            }
+            drawing = false;
         }
     }
     //Function will draw a Rectangle sides between 20cm and 80cm
     public void drawRectangle(int x, int y, RectangleWindow win) throws IOException{
-        boolean drawing = false;
+        boolean drawing = true;
         LogData(x,y);
         win.setVisible(false);
         pF.setVisible(true);
         pF.tillShapeDrawn(centimeterestoTraveled);
-        /*while(drawing){
-            
-        }*/
+        moveFinch(x,y,drawing);
         pF.setVisible(false);
         new drawShapeWindow().setVisible(true);
     }
